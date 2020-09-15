@@ -1,0 +1,15 @@
+* {
+  font-family: Tahoma, Geneva, sans-serif;
+  padding: 3px;
+}
+
+.wrapper {
+  padding: 2px;
+  max-width: 80%;
+  margin: auto;
+}
+
+.header {
+  font-size: larger;
+  font-weight: bolder;
+}

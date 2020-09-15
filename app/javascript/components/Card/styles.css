@@ -1,0 +1,54 @@
+.image {
+  max-height: 200px;
+}
+
+.title {
+  font-size: larger;
+  padding: 5px 0px;
+}
+
+.card {
+  padding: 5px;
+  margin: 15px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  /* border:(80, 160, 209) solid 1px; */
+  background-color: lightblue;
+  border-radius: 5px;
+}
+
+.button {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: rgb(219, 241, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  cursor: pointer;
+  word-break: keep-all;
+
+  /* text-decoration: none;
+  overflow: hidden; */
+}
+
+.likes {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 3px;
+}
+
+.image {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  /* text-decoration: none;
+  overflow: hidden; */
+}
