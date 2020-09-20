@@ -1,54 +1,129 @@
-.image {
-  max-height: 200px;
-}
-
 .title {
-  font-size: larger;
-  padding: 5px 0px;
+  font-weight: bolder;
+  padding-top: 5px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
 }
 
 .card {
-  padding: 5px;
+  padding: 10px;
   margin: 15px;
   justify-content: center;
   align-items: center;
   text-align: center;
-
-  /* border:(80, 160, 209) solid 1px; */
-  background-color: lightblue;
+  background-color: #00a69c;
+  color: f9f9f3;
   border-radius: 5px;
+  position: relative;
 }
 
 .button {
-  position: relative;
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background: rgb(219, 241, 255);
-  display: flex;
+  width: 120px;
+  height: 40px;
+  border-radius: 5px;
   justify-content: center;
-  align-items: center;
-  margin: 0 auto;
+  align-items: right;
+  margin: auto 0 auto auto;
   cursor: pointer;
-  word-break: keep-all;
+  text-align: center;
+  background-color: #074047;
+  color: f9f9f3;
+  border: none;
+  outline: 0;
+  transition: transform 0.2s;
+}
 
-  /* text-decoration: none;
-  overflow: hidden; */
+.button:focus {
+  border: none;
+  outline: 0;
+}
+
+.button:hover {
+  transform: scale(1.1);
+}
+
+.button:active {
+  background-color: rgb(187, 66, 145);
+  /* border: 3px solid rgb(187, 66, 145); */
 }
 
 .likes {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: right;
+  text-align: right;
   padding: 3px;
 }
 
 .image {
+  object-fit: contain;
+  width: 100%;
+  height: 182px;
+  z-index: 2;
+  position: absolute;
+  left: 0px;
+  border-radius: 5px;
+  padding: 1px 0;
+}
+
+.blur-background {
   position: relative;
+  object-fit: cover;
+  width: 100%;
+  height: 184px;
+  filter: blur(3px);
+  filter: brightness(0.5) blur(3px);
+  border-radius: 5px;
+}
+
+.user {
+  margin-top: 5px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  /* text-decoration: none;
-  overflow: hidden; */
+  align-items: stretch;
+}
+
+.user-avatar {
+  object-fit: cover;
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+}
+
+.details {
+  margin: 10px;
+}
+
+/* .description {
+  color: #121212 !important;
+} */
+
+.heart {
+  background-color: rgb(187, 66, 145);
+  display: inline-block;
+  height: 15px;
+  margin: auto;
+  position: relative;
+  top: 0;
+  transform: rotate(-45deg);
+  width: 15px;
+}
+
+.heart:before,
+.heart:after {
+  content: "";
+  background-color: rgb(187, 66, 145);
+  border-radius: 50%;
+  height: 15px;
+  position: absolute;
+  width: 15px;
+}
+
+.heart:before {
+  top: -7.5px;
+  left: 0;
+}
+
+.heart:after {
+  left: 7.5px;
+  top: 0;
 }

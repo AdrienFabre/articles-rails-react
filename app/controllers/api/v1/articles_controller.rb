@@ -4,69 +4,53 @@ module Api
   module V1
     class ArticlesController < ApplicationController
      
-      protect_from_forgery with: :null_session
+      protect_from_forgery with: :exception
       ARTICLES_URL = 'https://s3-eu-west-1.amazonaws.com/olio-staging-images/developer/test-articles-v3.json'
 
       def index
-        articles_json = get_articles
-        updated_articles_json = update_articles(articles_json)
-        render json: updated_articles_json
+        pulled_articles = get_articles
+        updated_articles = update_articles(pulled_articles)
+        puts updated_articles
+        render_success('Articles pulled successfully', updated_articles)
       end
 
       def update
-        article = Article.find(params[:id])
-        updated_likes = article.likes += 1
-        article.update({likes: updated_likes})
+        article = Article.find(params[:id]).add_like
         updated_article = Article.find(params[:id])
-        render json: updated_article
+        render_success('Article updated successfully', updated_article)
       end
 
       private
-
-      def article_params 
-        params.require(:article).permit(:id)
-      end
 
       def get_articles
         articles = RestClient.get ARTICLES_URL
         articles_json = JSON.parse articles
       end
 
-      def update_articles(articles_json)
-        updated_articles_json = articles_json.map do 
-          | article | 
-          updated_article = update_article(article)
-        end
-        updated_articles_json
+      def update_articles(articles)
+        articles.map { | article | update_article(article) }.sort_by! { | article |  article[:updated_at]}.reverse
       end
 
       def update_article(article)
-        likes = 0 
         if Article.exists?(article['id'])
-          likes = Article.find(article['id']).likes
-        else  
-          newArticle = Article.new(guid: article['id'], likes: 0)
-          unless newArticle.save
-            return_error
-          end 
+          new_article = Article.find(article['id'])
+        else
+          new_article = Article.new(guid: article['id'], likes: 0)
+          render_error(article) unless new_article.save! 
         end
-        updated_article = extract_necessary_keys(article, likes)
+        updated_article =  new_article.complete_article(article)
       end
 
-      def extract_necessary_keys(article, likes)
-        {
-          id: article['id'], 
-          title: article['title'],
-          description: article['description'],
-          likes: likes,
-          image: article['images'][0]['files']['medium'],
-          user: article['user']['first_name'],
-          last_listed: article['last_listed']
-        }
+      def render_success(message, data)
+        render json: {status: 'OK', message: message, data: data}
       end
 
-      def return_error
-        render json: {status: 'ERROR', message: 'Article not saved', data: data.article.error}
+      def render_error
+        render json: {status: 'ERROR', message: 'Article not saved', data: article.errors.full_messages}
+      end
+
+      def article_params 
+        params.require(:article).permit(:id)
       end
 
     end

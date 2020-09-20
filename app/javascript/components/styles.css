@@ -1,15 +1,52 @@
 * {
-  font-family: Tahoma, Geneva, sans-serif;
-  padding: 3px;
+  font-family: "Dosis", sans-serif !important;
+  letter-spacing: 1px;
+  color: #f9f9f3;
+  font-size: 17px;
 }
 
 .wrapper {
-  padding: 2px;
+  background-color: #f9f9f3;
+  padding: 0;
+  margin: 0;
+  /* height: 100vh; */
+}
+
+.content {
   max-width: 600px;
   margin: auto;
+  background-color: #f9f9f3;
+  padding-top: 50px;
 }
 
 .header {
+  position: fixed;
+  top: 0;
   font-size: larger;
   font-weight: bolder;
+  height: 40px;
+  color: #00a69c;
+  z-index: 3;
+  background-color: #f9f9f3;
+  width: 600px;
+  display: inline-block;
+  padding-top: 15px;
+}
+
+.loader {
+  border: 16px solid #f9f9f3;
+  border-top: 16px solid #00a69c;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
