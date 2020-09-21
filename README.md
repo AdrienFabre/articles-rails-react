@@ -22,23 +22,24 @@ This app uses Rails and React to pull a list of articles, display them and give 
 - As a global user of the 'Sharing App'
 
   - So I can visualise all the articles at once
-  - I need to read the list of articles with:
 
-    - article picture
-    - article title
-    - article description
-    - owner name
-    - owner avatar
-    - since when it was was updated
+    - I need to read the list of articles with:
+
+      - article picture
+      - article title
+      - article description
+      - owner name
+      - owner avatar
+      - since when it was was updated
 
   - So I can show interest like an article
-  - I need to be able to click on a 'like' button
+    - I need to be able to click on a 'like' button
 
 ### Diagram
 
 <img src="public/dataflow.jpg" alt="Dataflow" title="Dataflow" width="550" height="300" />
 
-GET
+#### GET
 
 1 - The list of articles get pulled from AWS to Rails server.
 
@@ -50,7 +51,7 @@ GET
 
 3 - The adjusted list of articles get pulled from Rails server to React, to display the list.
 
-PATCH
+#### PATCH
 
 1 - Every article from the list of articles is displayed in a card which includes a button 'Like'.
 
@@ -62,25 +63,25 @@ PATCH
 
 index
 
-- pull list_of_articles from AWS
+- pull articles from AWS
 
-  - map through the list_of_articles
+  - map through the articles
 
-    - create updated_article
+    - create adjusted_article
 
     - if 'article id' exists in the DB
 
       - find 'article id'
 
-      - add 'likes' to updated_article
+      - add 'likes' to adjusted_article
 
     - else
 
       - create the article in the DB with 0 like
 
-  - complete the updated_article necessary data
+  - complete the adjusted_article with the required data
 
-- return all updated_articles
+- return all adjusted_articles
 
 update
 
