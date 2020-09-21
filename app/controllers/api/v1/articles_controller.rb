@@ -32,11 +32,12 @@ module Api
       end
 
       def adjust_article(article)
-        new_article = if Article.exists?(article['id'])
-                        Article.find(article['id'])
-                      else
-                        Article.new(guid: article['id'], likes: 0)
-                      end
+        if Article.exists?(article['id'])
+          new_article = Article.find(article['id'])
+        else
+          new_article = Article.new(guid: article['id'], likes: 0)
+          new_article.save
+        end
         new_article.complete_article(article)
       end
     end
