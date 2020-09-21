@@ -21,7 +21,7 @@ This app uses Rails and React to pull a list of articles from an S3 bucket, disp
 
 - As a global user of the 'Sharing App'
 
-  - In order to visualise all the articles at once
+  - So I can visualise all the articles at once
 
     - I need to read the list of articles with:
 
@@ -32,12 +32,13 @@ This app uses Rails and React to pull a list of articles from an S3 bucket, disp
       - owner avatar
       - since when it was was updated
 
-  - In order to show interest in an article
+  - So I can show interest in an article
 
     - I need to be able to click on a 'like' button
 
-  - In order to make my likes count
-    - I need to be able to click on a 'like' button
+  - So I can keep my likes and see the likes from others
+
+    - I need to be able to see the updated number of 'likes'
 
 ### Database Schema
 
@@ -199,3 +200,11 @@ Running:  home_page_spec.js (1 of 1)
 ```unix
 rake db:drop db:create db:migrate
 ```
+
+### Future work
+
+Create separate development, testing and production environments and databases.
+
+Create tests for handling errors and write the rescue / error message functions.
+
+Create snapshot test to be more granular with the React testing.
