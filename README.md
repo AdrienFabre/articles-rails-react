@@ -17,7 +17,7 @@ This app uses Rails and React to pull a list of articles from an S3 bucket, disp
   - The data persisted and updated with each new page load.
   - The likes are global and not per user.
 
-### User journey
+### User Stories
 
 - As a global user of the 'Sharing App'
 
