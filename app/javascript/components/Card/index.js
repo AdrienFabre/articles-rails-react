@@ -1,6 +1,6 @@
 import React from "react"
-import "./styles"
 import axios from "axios"
+import "./styles"
 
 import JavascriptTimeAgo from "javascript-time-ago"
 import en from "javascript-time-ago/locale/en"
@@ -25,10 +25,27 @@ class Card extends React.Component {
     axios
       .patch(`/api/v1/articles/${article.id}`)
       .then((resp) => {
-        updatedArticle.likes = resp.data.data.likes
+        updatedArticle.likes = resp.data.likes
         this.setState({ article: updatedArticle })
       })
       .catch((resp) => console.log(resp))
+  }
+
+  renderImage = (image) => {
+    return (
+      <>
+        <img className="image-blur" src={`${image}`} alt="image-blur" />
+        <img className="image-clear" src={`${image}`} alt="image-clear" />
+      </>
+    )
+  }
+
+  renderLikes = (likes) => {
+    return (
+      <div className="likes">
+        <span className="heart" /> {likes} {likes > 1 ? "likes" : "like"}
+      </div>
+    )
   }
 
   render() {
@@ -37,30 +54,19 @@ class Card extends React.Component {
 
     return (
       <div className="card">
-        <img
-          className="blur-background"
-          src={`${article.image}`}
-          alt="blurBackground"
-        />
-        <img className="image" src={`${article.image}`} alt="image" />
-        <div className="user">
-          <img
-            className="user-avatar"
-            src={`${article.user_avatar}`}
-            alt="new"
-          />
-          <div className="details">
-            Posted by {article.user} - <ReactTimeAgo date={date} />
+        {this.renderImage(article.image)}
+        <div className="middle-layer">
+          <img className="avatar" src={`${article.user_avatar}`} alt="avatar" />
+          <div className="info">
+            <span className="owner">Posted by {article.user}</span> -{" "}
+            <ReactTimeAgo date={date} />
           </div>
           <button className="button" onClick={() => this.addLike(article)}>
-            <div className="likes">
-              <span className="heart"></span> {article.likes}{" "}
-              {article.likes > 1 ? "likes" : "like"}
-            </div>
+            {this.renderLikes(article.likes)}
           </button>
         </div>
         <div className="title">{article.title}</div>
-        <div className="description">{article.description}</div>
+        <div className="info description">{article.description}</div>
       </div>
     )
   }

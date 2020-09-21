@@ -16,10 +16,8 @@ class App extends React.Component {
     axios
       .get("/api/v1/articles.json")
       .then((resp) => {
-        let articles = resp.data.data
-        console.log(resp.data)
+        let articles = resp.data
         this.setState({ articles: articles, loading: false })
-        console.log(this.state.articles)
       })
       .catch((resp) => console.log(resp))
   }
@@ -30,10 +28,9 @@ class App extends React.Component {
     console.log("Render Loading", loading)
     return (
       <>
-        <div className="wrapper">
+        <div className="body">
+          <h1 className="header">Sharing App</h1>
           <div className="content">
-            <div className="header">Sharing App</div>
-
             {loading ? (
               <div className="loader"> </div>
             ) : (
