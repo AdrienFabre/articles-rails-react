@@ -17,11 +17,11 @@ This app uses Rails and React to pull a list of articles from an S3 bucket, disp
   - The data persisted and updated with each new page load.
   - The likes are global and not per user.
 
-### User Stories
+### User journey
 
 - As a global user of the 'Sharing App'
 
-  - So I can visualise all the articles at once
+  - In order to visualise all the articles at once
 
     - I need to read the list of articles with:
 
@@ -32,12 +32,23 @@ This app uses Rails and React to pull a list of articles from an S3 bucket, disp
       - owner avatar
       - since when it was was updated
 
-  - So I can show interest like an article
+  - In order to show interest in an article
+
     - I need to be able to click on a 'like' button
+
+  - In order to make my likes count
+    - I need to be able to click on a 'like' button
+
+### Database Schema
+
+There will be one database containing:
+
+- :id, a string, coming from the S3 bucket id.
+- :likes, an integer, the number of likes accumulated.
 
 ### Diagram
 
-<img src="public/dataflow.jpg" alt="Dataflow" title="Dataflow" width="550" height="300" />
+<img src="public/diagram.jpg" alt="diagram" title="diagram" width="550" height="300" />
 
 #### GET
 
@@ -166,7 +177,7 @@ Run Cypress test
 npx cypress run
 ```
 
-Resulst
+Results
 
 ```unix
 Running:  home_page_spec.js (1 of 1)
