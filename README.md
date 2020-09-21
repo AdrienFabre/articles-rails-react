@@ -2,9 +2,9 @@
 
 ## Sharing App
 
-This app uses Rails and React to pull a list of articles, display them and give the ability to like them.
+This app uses Rails and React to pull a list of articles from an S3 bucket, display these articles on the FE and create a db on BE for liking the articles.
 
-### Requests
+### Requirements
 
 - Create a basic rails app (that we could run and try) with a React frontend integrated
 
@@ -95,6 +95,7 @@ update
 git clone git@github.com:AdrienFabre/articles-rails-react.git
 cd articles-rails-react
 bundle
+yarn install
 rake db:create db:migrate
 rails s
 ```
