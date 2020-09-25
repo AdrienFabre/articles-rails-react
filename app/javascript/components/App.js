@@ -24,8 +24,6 @@ class App extends React.Component {
 
   render() {
     const { articles, loading } = this.state
-    console.log("Render Articles", articles)
-    console.log("Render Loading", loading)
     return (
       <>
         <div className="body">

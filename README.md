@@ -227,11 +227,3 @@ Running:  home_page_spec.js (1 of 1)
 ```unix
 rake db:drop db:create db:migrate
 ```
-
-### Future work
-
-Create separate development, testing and production environments and databases.
-
-Create tests for handling errors and write the rescue / error message functions.
-
-Create snapshot test to be more granular with the React testing.

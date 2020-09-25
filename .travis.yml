@@ -1,5 +1,3 @@
-language: ruby node_js
-
 before_install:
   - gem install bundler
 
