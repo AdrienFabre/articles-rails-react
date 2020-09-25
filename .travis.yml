@@ -2,18 +2,15 @@ language: ruby js
 
 before_install:
   - gem install bundler
-  - yarn install
 
 notifications:
   - false
 
 rvm:
   - 2.6.0
-  - jruby-19mode
-  - rbx-2
 
 script: — bundle install — jobs=3 — retry=3
-  — yarn install — jobs=3 — retry=3
+  — npm install — jobs=3 — retry=3
   — bundle exec rake db:create
   — bundle exec rake db:migrate
   — bundle exec rspec --format documentation
