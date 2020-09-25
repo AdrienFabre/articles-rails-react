@@ -4,7 +4,7 @@
 
 This app uses Rails and React to pull a list of articles from an S3 bucket, display these articles on the FE and create a db on BE for liking the articles.
 
-![screenshot](public/screenshot.png)
+<img src="public/screenshot.png" alt="diagram" title="diagram" width="600" height="800" />
 
 ### Requirements
 
