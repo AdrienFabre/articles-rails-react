@@ -1,5 +1,3 @@
-require 'coveralls'
-Coveralls.wear!
 # :nocov:
 
 # frozen_string_literal: true

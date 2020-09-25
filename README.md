@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/AdrienFabre/articles-rails-react.svg?branch=master)](https://travis-ci.org/AdrienFabre/articles-rails-react.svg?branch=master)
-
 # README
 
 ## Sharing App
