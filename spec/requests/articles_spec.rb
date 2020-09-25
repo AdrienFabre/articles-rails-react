@@ -36,12 +36,5 @@ RSpec.describe 'Articles Controller' do
       patch('/api/v1/articles/123456')
       expect(response_json['likes']).to eql(1)
     end
-
-    it 'raises error if not existing id' do
-      Article.new(id: '123456', likes: 0).save
-      expect { patch('/api/v1/articles/111111') }.to raise_error(
-        "Couldn't find Article with 'guid'=111111"
-      )
-    end
   end
 end

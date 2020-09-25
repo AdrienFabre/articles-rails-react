@@ -1,5 +1,7 @@
 # README
 
+[![Coverage Status](https://coveralls.io/repos/github/AdrienFabre/bank_tech_test_ruby/badge.svg?branch=master)](https://coveralls.io/github/AdrienFabre/bank_tech_test_ruby?branch=master)
+
 ## Sharing App
 
 This app uses Rails and React to pull a list of articles from an S3 bucket, display these articles on the FE and create a db on BE for liking the articles.
@@ -16,6 +18,8 @@ This app uses Rails and React to pull a list of articles from an S3 bucket, disp
 
   - The data persisted and updated with each new page load.
   - The likes are global and not per user.
+
+_The Likes are global, so it does not require authentication._
 
 ### User Stories
 
@@ -47,6 +51,8 @@ There will be one database containing:
 - :id, a string, coming from the S3 bucket id.
 - :likes, an integer, the number of likes accumulated.
 
+_As the List of Articles is pulled from the server at every page load, only the Id and Likes need to be saved in the database._
+
 ### Diagram
 
 <img src="public/diagram.jpg" alt="diagram" title="diagram" width="550" height="300" />
@@ -57,39 +63,45 @@ There will be one database containing:
 
 2 - The list of articles get adjusted in the Rails server.
 
-- If the article exists in the database (same Id), it would get the number of likes.
+- If the article is found in the database (same Id), it would get the number of likes.
 
-- If the article does not exist in the database, it would create an instance of Article (with the new Id) and save it with a number of likes equal to 0.
+- If the article is not found in the database, it would initialize an instance of Article (with the new Id) with a number of likes equal to 0.
 
-3 - The adjusted list of articles get pulled from Rails server to React, to display the list.
+3 - The adjusted list of articles get pulled from Rails server and sent to React, to display the list.
 
 #### PATCH
 
-1 - Every article from the list of articles is displayed in a card which includes a button 'Like'.
+1 - Through React, every article from the list of articles is displayed in a card which includes a button 'Like'.
 
-2 - When the button is clicked, the specific Article Id is sent to the Rails server to the UPDATE route.
+2 - When the button is clicked, the specific Article Id is sent to the Rails server through the UPDATE route.
 
-3 - The Rails server finds the article in the database and add one like, it then returns the updated number of likes to React.
+3 - The Rails server updates the database
+
+- If the article is found in the database, it adds one like
+
+- If the article is not found in the database, it creates a new Article with the Article Id and the number of 'likes' set to 1.
+
+4 - The updated number of likes is returned to React.
+
+_The article is saved only if the number of likes is superior than 0 in order to reduce the number of exchanges with the database._
 
 ### Articles Controller
 
 index
 
-- pull articles from AWS
+- pull articles from AWS S3 bucket
 
   - map through the articles
 
     - create adjusted_article
 
-    - if 'article id' exists in the DB
+    - if the article is found in the DB with 'article id'
 
-      - find 'article id'
-
-      - add 'likes' to adjusted_article
+      - retrieve the 'likes'
 
     - else
 
-      - create the article in the DB with 0 like
+      - initialize the article with 0 like
 
   - complete the adjusted_article with the required data
 
@@ -97,17 +109,35 @@ index
 
 update
 
-- find 'article id'
-- add 'likes' to updated_article
+- if the article is found in the DB with 'article id'
+
+  - increment the mumber of 'likes'
+
+- else
+
+  - create the article with 'likes' = 1
+
 - return updated_article
 
 ### Running the app
 
+Get the repo from GitHub
+
 ```unix
 git clone git@github.com:AdrienFabre/articles-rails-react.git
 cd articles-rails-react
+```
+
+Install dependencies
+
+```unix
 bundle
 yarn install
+```
+
+Prepare the DB and launch the app
+
+```unix
 rake db:create db:migrate
 rails s
 ```
@@ -137,8 +167,6 @@ Article
   validaton
     id
       must be present
-    likes
-      must be present
   #complete_article
     returns an object with necessary keys
   #add_like
@@ -150,7 +178,6 @@ Articles Controller
     returns the correct articles keys with saved data
   PATCH /api/v1/articles/:id
     returns the updated article
-    raises error if not existing id
 
 Status requests
   GET /api/v1/articles

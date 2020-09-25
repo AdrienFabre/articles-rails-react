@@ -61,4 +61,5 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'rest-client'
 
+gem 'coveralls', require: false
 gem 'simplecov', require: false, group: :test

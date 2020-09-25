@@ -15,20 +15,12 @@ RSpec.describe Article do
         expect(subject).to_not be_valid
       end
     end
-    describe 'likes' do
-      it 'must be present' do
-        expect(subject).to be_valid
-        subject.likes = nil
-        expect(subject).to_not be_valid
-      end
-    end
   end
 
   describe '#complete_article' do
     it 'returns an object with necessary keys' do
-      expect(subject.complete_article(full_article_data).keys).to contain_exactly(:id, :likes, :title, :description,
-                                                                                  :image, :location, :user, :user_avatar,
-                                                                                  :updated_at)
+      expect(subject.complete_article(full_article_data).keys)
+        .to contain_exactly(:id, :likes, :title, :description, :image, :location, :user, :user_avatar, :updated_at)
     end
   end
 
