@@ -36,6 +36,8 @@
 }
 
 .loader {
+  margin: 90px auto;
+  background-size: cover;
   border: 16px solid #f9f9f3;
   border-top: 16px solid #00a69c;
   border-radius: 50%;
