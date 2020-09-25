@@ -6,11 +6,12 @@ before_install:
 notifications:
   - false
 
-script: — bundle install
-  — npm install
-  — bundle exec rake db:create
-  — bundle exec rake db:migrate
-  — bundle exec rspec
+script:
+  - bundle install
+  - npm install
+  - bundle exec rake db:create
+  - bundle exec rake db:migrate
+  - bundle exec rspec
 
 after_success:
   - CI=true TRAVIS=true coveralls --verbose
