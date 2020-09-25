@@ -10,7 +10,7 @@ script: — bundle install
   — npm install
   — bundle exec rake db:create
   — bundle exec rake db:migrate
-  — bundle exec rspec --format documentation
+  — bundle exec rspec
 
-after_script:
-  - bundle exec rake coveralls:push
+after_success:
+  - CI=true TRAVIS=true coveralls --verbose
