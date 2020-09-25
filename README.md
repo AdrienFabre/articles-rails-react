@@ -4,6 +4,8 @@
 
 This app uses Rails and React to pull a list of articles from an S3 bucket, display these articles on the FE and create a db on BE for liking the articles.
 
+![screenshot](public/screenshot.png)
+
 ### Requirements
 
 - Create a basic rails app (that we could run and try) with a React frontend integrated
@@ -184,7 +186,7 @@ Status requests
     returns a status 200
 
 Finished in 1.45 seconds (files took 1.6 seconds to load)
-10 examples, 0 failures
+8 examples, 0 failures
 
 Coverage report generated for RSpec to /home/adrien/Desktop/Rails React Projects/articles-rails-react/coverage. 129 / 129 LOC (100.0%) covered.
 ```
