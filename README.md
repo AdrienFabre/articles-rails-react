@@ -1,6 +1,6 @@
-# README
+[![Build Status](https://travis-ci.org/AdrienFabre/articles-rails-react.svg?branch=master)](https://travis-ci.org/AdrienFabre/articles-rails-react.svg?branch=master)
 
-[![Coverage Status](https://coveralls.io/repos/github/AdrienFabre/bank_tech_test_ruby/badge.svg?branch=master)](https://coveralls.io/github/AdrienFabre/bank_tech_test_ruby?branch=master)
+# README
 
 ## Sharing App
 
